@@ -44,8 +44,43 @@ function append(new_data: number) {
     return head;
 }
 
+function reverse() {
+    if (head == null) return;
+    let prev: ListNode | null = null;
+    let current: ListNode | null = head;
+
+    while (current != null) {
+        const next: ListNode | null = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+    }
+
+    return prev;
+}
+
+function deleteNode(position: number) {
+
+    if (head == null || head.next == null) return;
+    
+    let temp: ListNode = head;
+
+    if (position == 0) {
+        return temp.next;
+    }
+
+    //find previous node of the node to be deleted
+    for (let i = 0; temp != null && i < position - 1; i++) {
+        temp = head.next;
+    }
+
+    if (temp == null || temp.next == null) return
+    temp.next = temp.next.next;
+
+    return head;
+}
 
 
 const testing = append(6);
-console.log(testing) ;  
+console.log(testing) ;
 console.log('ffff');
