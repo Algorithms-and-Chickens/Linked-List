@@ -39,7 +39,6 @@ function append(new_data: number) {
     while (last.next != null) {
         last = last.next;
     }
-
     last.next = new_node;
     return head;
 }
@@ -80,7 +79,25 @@ function deleteNode(position: number) {
     return head;
 }
 
+//resulting in a total time complexity of O(n)
+function findMiddleItem() {
+    if (head == null) return null;
 
-const testing = append(6);
+    if (head.next == null) return head.val;
+
+    //find the length of the head
+    let slowPoint: ListNode | null = head;
+    let highPoint: ListNode | null = head;
+    
+    while (slowPoint.next != null && highPoint != null) {
+        slowPoint = slowPoint.next;
+        highPoint = highPoint?.next?.next ?? null;
+    }
+
+    return slowPoint.val;
+}
+
+
+const testing = findMiddleItem();
 console.log(testing) ;
 console.log('ffff');
